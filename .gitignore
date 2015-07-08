@@ -1,2 +1,10 @@
 venv/*
 venv/**
+
+scripts/R/*
+scripts/R/**
+
+*.pyc
+*.sqlite
+*.sqlite-journal
+config/secrets.json
