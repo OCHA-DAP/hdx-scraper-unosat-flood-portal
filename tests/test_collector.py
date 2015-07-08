@@ -15,6 +15,7 @@ from mock import patch
 # program
 import config.load as Config
 import config.database as DB
+import utilities.db as Database
 import unosat_flood_portal_collect.collect as Collect
 
 #
@@ -37,3 +38,12 @@ class CheckCollectorFunctions(unittest.TestCase):
 
   def test_clean_table_fails(self):
     assert Collect.CleanTable('foo') == False
+
+
+class CheckPatches(unittest.TestCase):
+  '''Unit tests that check if the patches are doing what they are supposed to do.'''
+
+  def test_read_all_records_works(self):
+    d = Database.ReadAllRecords('unprocessed_data')
+    assert type(d) == list
+    assert Database.ReadAllRecords('unprocessed_data') != False

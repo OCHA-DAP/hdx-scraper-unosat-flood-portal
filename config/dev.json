@@ -16,4 +16,23 @@
             "link_type"
         ]
     }
+},
+{
+    "name": "processed_data",
+    "long_name": "UNOSAT Flood Portal Processed / Clean Data",
+    "url": "http://floods.unosat.org/geoportal/rest/find/document?rid=local&rids=local&start=1&max=10000&orderBy=relevance&dojo.preventCache=1436368315391&f=json",
+    "pii_columns": [],
+    "database": {
+       "table_name": "processed_data",
+       "fields": [
+            "title",
+            "id",
+            "updated",
+            "summary",
+            "created",
+            "country",
+            "link_href",
+            "link_type"
+        ]
+    }
 }]

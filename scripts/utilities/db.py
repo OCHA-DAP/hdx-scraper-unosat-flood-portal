@@ -47,3 +47,27 @@ def StoreRecords(schema, data, table):
     print "%s Failed to store record in database." % item('prompt_error')
     print e
     return False
+
+
+
+
+def ReadAllRecords(table_name, verbose=True):
+  '''Clean all records from table in database.'''
+
+  #
+  # SQL statement.
+  #
+  sql = 'select * from %s' % table_name
+
+  #
+  # SQL execution.
+  #
+  try:
+    print scraperwiki.sqlite.execute(sql)['data']
+    return scraperwiki.sqlite.execute(sql)['data']
+
+  except Exception as e:
+    if verbose:
+      print '%s Failed to read table `%s`.' % (item('prompt_error'), table_name)
+      print e
+      return False
