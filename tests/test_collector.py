@@ -44,4 +44,6 @@ class CheckPatches(unittest.TestCase):
   '''Unit tests that check if the patches are doing what they are supposed to do.'''
 
   def test_read_all_records_works(self):
+    d = Database.ReadAllRecords('unprocessed_data')
+    assert type(d) == list
     assert Database.ReadAllRecords('unprocessed_data') != False

@@ -27,4 +27,4 @@ if __name__ == '__main__':
   except IndexError:
     config_path = Config.PROD_CONFIG_PATH
 
-  collect.Main()
+  collect.Main(patch=True)

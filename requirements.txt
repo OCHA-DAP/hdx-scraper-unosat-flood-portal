@@ -12,3 +12,4 @@ scraperwiki==0.5.1
 six==1.9.0
 termcolor==1.1.0
 wsgiref==0.1.2
+countrycode==0.2.0

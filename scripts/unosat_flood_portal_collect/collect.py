@@ -8,6 +8,8 @@ import requests
 dir = os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
 sys.path.append(dir)
 
+
+import clean as Clean
 import config.load as Config
 from utilities.db import CleanTable
 from utilities.db import StoreRecords
@@ -95,7 +97,7 @@ def StoreData(data, table_name, verbose=True):
     return False
 
 
-def Main(write_json=False):
+def Main(patch=True, write_json=False):
   '''Wrapper.'''
   try:
     d = DownloadAndProcessData()
@@ -106,6 +108,22 @@ def Main(write_json=False):
           json.dump(d, outfile)
 
     StoreData(data=d, table_name='unprocessed_data')
+
+    #
+    # Patching original data.
+    #
+    if patch:
+      try:
+        dates_data = Clean.CleanDates(data=d)
+        country_data = Clean.IdentifyCountries(data=dates_data)
+        StoreData(data=country_data, table_name='processed_data')
+        print '%s Successfully patched %s records.' % (item('prompt_success'), len(country_data))
+
+      except Exception as e:
+        print '%s Failed to patch data.' % item('prompt_error')
+        print e
+        return False
+
     print '%s Successfully fetched %s records from the UNOSAT Flood Portal.\n' % (item('prompt_success'), len(d))
 
   except Exception as e:
