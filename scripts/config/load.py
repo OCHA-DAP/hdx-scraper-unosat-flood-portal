@@ -35,4 +35,11 @@ def LoadConfig(config_path=DEV_CONFIG_PATH, verbose=True):
       print e
     return False
 
+  #
+  # Perform basic quality checks.
+  #
+  if len(config['hdx_key']) is not 36:
+    print '%s API key seems to be wrong. Please check: %s' % (item('prompt_error'), os.path.split(config_path)[1])
+    return False
+
   return config

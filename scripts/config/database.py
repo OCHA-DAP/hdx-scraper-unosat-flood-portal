@@ -19,7 +19,7 @@ def CreateTables(config_path=Config.DEV_CONFIG_PATH, verbose=True):
   '''Creating the tables of the new database.'''
 
   try:
-    config_data = Config.LoadConfig(config_path)
+    config_data = Config.LoadConfig(config_path)['database']
 
   except Exception as e:
     if verbose:
