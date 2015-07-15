@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import os
+import re
 import sys
-import requests
 import json
+import requests
 
 dir = os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
 sys.path.append(dir)
@@ -43,7 +44,7 @@ def CleanDates(data, verbose=False):
       #
       record['created'] = None
 
-    record['created'] = d.strftime('%Y-%m-%d')
+    record['created'] = d.strftime('%m/%d/%Y')
     record_array.append(record)
 
 
@@ -85,6 +86,50 @@ def IdentifyCountries(data, verbose=True):
     else:
       record['country'] = None
 
+    record_array.append(record)
+
+
+  return record_array
+
+
+def CleanTitle(data, verbose=True):
+  '''Cleaning titles.'''
+
+  print '%s Cleaning title.' % item('prompt_bullet')
+  
+  record_array = []
+  for record in data:
+    summary = record['summary']
+    title = record['title']
+    
+    #
+    # Finds the date stamp.
+    #
+    t = '(' + title[title.find("(")+1:title.find(")")] + ')'
+    
+    #
+    # Extracts title from description.
+    #
+    find = re.compile(r"^[^.]*")
+    m = re.match(find, summary)
+    c = m.group(0)
+
+    #
+    # Merges both results
+    #
+    merged_title = c[c.find('of the ')+7:c.find(' which began ')] + ' ' + t
+
+    #
+    # Cleaning the original title.
+    #
+    # clean = s[14:]  # eliminating leading crisis code
+    # t = '(' + clean[clean.find("(")+1:clean.find(")")] + ')'
+    # clean = clean.replace(t, '')
+    
+    #
+    # Appending clean record.
+    #
+    record['title'] = merged_title
     record_array.append(record)
 
 

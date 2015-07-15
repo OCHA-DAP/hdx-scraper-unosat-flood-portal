@@ -10,6 +10,7 @@ sys.path.append(dir)
 
 import config.load as Config
 from unosat_flood_portal_collect import collect
+from unosat_flood_portal_collect import export
 
 
 if __name__ == '__main__':
@@ -26,5 +27,9 @@ if __name__ == '__main__':
 
   except IndexError:
     config_path = Config.PROD_CONFIG_PATH
-
+  
+  #
+  # Collect and export data.
+  #
   collect.Main(patch=True)
+  export.Main()
