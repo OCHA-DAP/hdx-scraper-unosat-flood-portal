@@ -69,7 +69,8 @@ def DownloadAndProcessData():
         'link_href': link['href'],
         'link_type': link['type'],
         'hdx_dataset_id': slugify(record['title']),
-        'crisis_code': record['title'][0:14]  # firts 14 characters of every title
+        'crisis_code': record['title'][0:14],  # firts 14 characters of every title
+        'bbox': ','.join([ str(r) for r in record['bbox'] ])
       }
       record_array.append(processed_record)
 
