@@ -1,6 +1,6 @@
 {
   "hdx_site": "https://test-data.hdx.rwlabs.org/",
-  "hdx_key": "xxx",
+  "hdx_key": "a6863277-f35e-4f50-af85-78a2d9ebcdd3",
   "json_folder": "data",
   "verbose": false,
   "delete_resources": true,
@@ -23,7 +23,8 @@
                 "link_href",
                 "link_type",
                 "hdx_dataset_id",
-                "crisis_code"
+                "crisis_code",
+                "bbox"
             ]
         }
     },
@@ -43,7 +44,10 @@
                 "link_href",
                 "link_type",
                 "hdx_dataset_id",
-                "crisis_code"
+                "crisis_code",
+                "file_extension",
+                "file_name",
+                "bbox"
             ]
         }
     }]
