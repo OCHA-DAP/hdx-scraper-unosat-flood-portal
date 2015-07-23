@@ -139,7 +139,7 @@ def CleanTitle(data, verbose=True):
 
 
 
-def IdentifyFileType(data, verbose=True):
+def IdentifyFileTypeAndFileName(data, verbose=True):
   '''Identify a file type of a resource.'''
   
   print '%s Identifying file extension.' % item('prompt_bullet')
@@ -152,21 +152,23 @@ def IdentifyFileType(data, verbose=True):
     # Also cleans preceeding period and
     # makes string upper case.
     #
-    href = record['link_href']    
+    href = record['link_href']  
     file_extension = os.path.splitext(href)[1].replace('.', '').upper()
+    file_name = os.path.basename(href)
     
     #
     # Checking if it is known.
     # If not, store None.
     #
-    if len(file_extension) > 3 or type(file_extension) == str:
+    if len(file_extension) > 3 or len(file_extension) == 0:
       file_extension = None
-
+      file_name = None
     
     #
     # Store and append.
     #
     record['file_extension'] = file_extension
+    record['file_name'] = file_name
     record_array.append(record)
 
   return record_array

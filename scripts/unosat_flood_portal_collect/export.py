@@ -94,6 +94,63 @@ def ExportDatasets(directory=None):
 
 
 
+def ExportResources(directory=None):
+  '''Export the UNOSAT resources for their respective datasets.'''
+
+  print '%s Exporting Resources JSON to disk.' % item('prompt_bullet')
+
+  #
+  # Sanity check.
+  #
+  if directory == None:
+    print '%s Provide a directory.' % (item('prompt_error'))
+
+  #
+  # Loading records from database.
+  #
+  cursor = scraperwiki.sqlite.execute('SELECT * FROM processed_data')
+  records = cursor['data']
+
+
+  #
+  # Default resource.
+  #
+  default_resource = {
+    "package_id": None,
+    "url": None,
+    "name": None,
+    "format": None,
+    "description": None  # file size could go here. 
+  }
+
+  data = []
+  for record in records:
+
+    t = default_resource
+  
+    #
+    # Adding fields from records.
+    #
+    t['package_id'] = record['hdx_dataset_id']
+    t['url'] = record['link_href']
+    t['name'] = record['file_name']
+    t['format'] = record['file_extension']
+
+    #
+    # Appending results.
+    #
+    data.append(copy(t))
+ 
+  #
+  # Write JSON to disk.
+  #
+  with open(os.path.join(directory, 'resources.json'), 'w') as outfile:
+    json.dump(data, outfile)
+
+
+
+
+
 def Main():
   '''Wrapper.'''
   
@@ -107,5 +164,5 @@ def Main():
   # to the default dir.
   #
   ExportDatasets(data_dir)
-  # ExportResources(data_dir)
+  ExportResources(data_dir)
   # ExportGalleryItemS(data_dir)

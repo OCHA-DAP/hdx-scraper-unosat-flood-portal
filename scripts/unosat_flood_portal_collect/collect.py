@@ -125,7 +125,7 @@ def Main(patch=True, write_json=False):
         #
         dates_data = Clean.CleanDates(data=d)
         country_data = Clean.IdentifyCountries(data=dates_data)
-        file_type_data = Clean.IdentifyFileType(data=country_data)
+        file_type_data = Clean.IdentifyFileTypeAndFileName(data=country_data)
 
         #
         # Variable for export.
