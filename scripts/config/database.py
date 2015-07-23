@@ -18,6 +18,9 @@ from utilities.prompt_format import item
 def CreateTables(config_path=Config.DEV_CONFIG_PATH, verbose=True):
   '''Creating the tables of the new database.'''
 
+  #
+  # Load configuration data.
+  #
   try:
     config_data = Config.LoadConfig(config_path)['database']
 
@@ -27,7 +30,10 @@ def CreateTables(config_path=Config.DEV_CONFIG_PATH, verbose=True):
       print e
 
     return False
-
+  
+  #
+  # Create SQL statements for every table.
+  #
   sql_statements = {}
 
   for endpoint in config_data:
@@ -42,6 +48,7 @@ def CreateTables(config_path=Config.DEV_CONFIG_PATH, verbose=True):
       print "%s Table `%s` created." % (item('prompt_bullet'), str(table))
 
     except Exception as e:
+      print '%s Failed to create table %s.' % (item('prompt_error'), table_name)
       print e
       return False
 
