@@ -103,7 +103,10 @@ def Main(patch=True, write_json=False):
   '''Wrapper.'''
   try:
     d = DownloadAndProcessData()
-
+    
+    #
+    # For testing purposes.
+    #
     if write_json:
       import json
       with open('data/test.json', 'w') as outfile:
