@@ -51,6 +51,7 @@ def CleanDates(data, verbose=False):
   return record_array
 
 
+
 def IdentifyCountries(data, verbose=True):
   '''Idenfiying a country code based on a string.'''
 
@@ -90,6 +91,7 @@ def IdentifyCountries(data, verbose=True):
 
 
   return record_array
+
 
 
 def CleanTitle(data, verbose=True):
@@ -132,5 +134,39 @@ def CleanTitle(data, verbose=True):
     record['title'] = merged_title
     record_array.append(record)
 
+
+  return record_array
+
+
+
+def IdentifyFileType(data, verbose=True):
+  '''Identify a file type of a resource.'''
+  
+  print '%s Identifying file extension.' % item('prompt_bullet')
+
+  record_array = []
+  for record in data:
+
+    #
+    # Extracting file extension from href.
+    # Also cleans preceeding period and
+    # makes string upper case.
+    #
+    href = record['link_href']    
+    file_extension = os.path.splitext(href)[1].replace('.', '').upper()
+    
+    #
+    # Checking if it is known.
+    # If not, store None.
+    #
+    if len(file_extension) > 3 or type(file_extension) == str:
+      file_extension = None
+
+    
+    #
+    # Store and append.
+    #
+    record['file_extension'] = file_extension
+    record_array.append(record)
 
   return record_array

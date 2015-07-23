@@ -109,7 +109,7 @@ def Main(patch=True, write_json=False):
     #
     if write_json:
       import json
-      with open('data/test.json', 'w') as outfile:
+      with open(os.path.join('data', 'test.json'), 'w') as outfile:
           json.dump(d, outfile)
 
     StoreData(data=d, table_name='unprocessed_data')
@@ -125,17 +125,23 @@ def Main(patch=True, write_json=False):
         #
         dates_data = Clean.CleanDates(data=d)
         country_data = Clean.IdentifyCountries(data=dates_data)
+        file_type_data = Clean.IdentifyFileType(data=country_data)
+
+        #
+        # Variable for export.
+        #
+        export_data = file_type_data
         
         #
         # Cleaning title and adding tags.
         #
-        data_title = Clean.CleanTitle(data=country_data)
+        data_title = Clean.CleanTitle(data=export_data)
 
         #
         # Storing results.
         #
         StoreData(data=data_title, table_name='processed_data')
-        print '%s Successfully patched %s records.' % (item('prompt_success'), len(country_data))
+        print '%s Successfully patched %s records.' % (item('prompt_success'), len(export_data))
 
       except Exception as e:
         print '%s Failed to patch data.' % item('prompt_error')
