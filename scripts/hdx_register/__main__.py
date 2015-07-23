@@ -42,8 +42,8 @@ def Main():
       # Loading JSON data.
       #
       dataset_dict = load.LoadData(os.path.join(p['json_folder'], 'datasets.json'))
-      # resource_dict = load.LoadData(os.path.join(p['json_folder'], 'resources.json'))
-      # gallery_dict = load.LoadData(os.path.join(p['json_folder'], 'gallery.json'))
+      resource_dict = load.LoadData(os.path.join(p['json_folder'], 'resources.json'))
+      gallery_dict = load.LoadData(os.path.join(p['json_folder'], 'gallery.json'))
 
       # Delete resources before running:
       if p['delete_resources'] is True:
@@ -53,8 +53,8 @@ def Main():
       # Create datasets, resources, and gallery items.
       #
       create.CreateDatasets(dataset_dict=dataset_dict, hdx_site=p['hdx_site'], apikey=p['hdx_key'], verbose=p['verbose'])
-      # create.CreateResources(resource_dict=resource_dict, hdx_site=p['hdx_site'], apikey=p['hdx_key'], verbose=p['verbose'])
-      # create.CreateGalleryItems(gallery_dict=gallery_dict, hdx_site=p['hdx_site'], apikey=p['hdx_key'], verbose=p['verbose'])
+      create.CreateResources(resource_dict=resource_dict, hdx_site=p['hdx_site'], apikey=p['hdx_key'], verbose=p['verbose'])
+      create.CreateGalleryItems(gallery_dict=gallery_dict, hdx_site=p['hdx_site'], apikey=p['hdx_key'], verbose=p['verbose'])
 
 
       print '%s Datasets registered in HDX successfully.\n' % item('prompt_success')
