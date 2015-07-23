@@ -29,15 +29,16 @@ class CheckConfigurationStructure(unittest.TestCase):
 
   ## Object type tests.
   def test_config_is_list(self):
-    dir = os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
     d = Config.LoadConfig(os.path.join(dir, 'config', 'dev.json'))
-    assert type(d) is list
+    assert type(d) is dict
 
   def test_config_returns_a_table_list(self):
-    dir = os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
     d = Config.LoadConfig(os.path.join(dir, 'config', 'dev.json'))
-    t = d[0]['database']['fields']
-    assert type(t) is list
+    assert type(d['database']) is list
+
+  def test_config_checks_api_key(self):
+    Config.LoadConfig(os.path.join(dir, 'config', 'dev.json'))
+    assert Config.LoadConfig(os.path.join(dir, 'tests', 'data', 'test_config.json')) == False
 
 
 class CheckDatabaseCreation(unittest.TestCase):
@@ -46,3 +47,7 @@ class CheckDatabaseCreation(unittest.TestCase):
   ## Structural tests.
   def test_wrapper_database_function_works(self):
     assert DB.Main() != False
+
+  ## Failed config file.
+  def test_database_fail(self):
+    assert DB.CreateTables(config_path=os.path.join(dir, 'tests', 'data', 'test_database_fail.json')) == False

@@ -1,19 +1,50 @@
-[{
-    "name": "unprocessed_data",
-    "long_name": "UNOSAT Flood Portal Unprocessed Data",
-    "url": "http://floods.unosat.org/geoportal/rest/find/document?rid=local&rids=local&start=1&max=10000&orderBy=relevance&dojo.preventCache=1436368315391&f=json",
-    "pii_columns": [],
-    "database": {
-       "table_name": "unprocessed_data",
-       "fields": [
-            "title",
-            "id",
-            "updated",
-            "summary",
-            "created",
-            "country",
-            "link_href",
-            "link_type"
-        ]
-    }
-}]
+{
+  "hdx_site": "https://test-data.hdx.rwlabs.org/",
+  "hdx_key": "a6863277-f35e-4f50-af85-78a2d9ebcdd3",
+  "json_folder": "data",
+  "verbose": false,
+  "delete_resources": true,
+  "delete_datasets": true,
+  "url": "http://floods.unosat.org/geoportal/rest/find/document?rid=local&rids=local&start=1&max=10000&orderBy=relevance&dojo.preventCache=1436368315391&f=json",
+  "database":
+    [{
+        "name": "unprocessed_data",
+        "long_name": "UNOSAT Flood Portal Unprocessed Data",
+        "pii_columns": [],
+        "database": {
+           "table_name": "unprocessed_data",
+           "fields": [
+                "title",
+                "id",
+                "updated",
+                "summary",
+                "created",
+                "country",
+                "link_href",
+                "link_type",
+                "hdx_dataset_id",
+                "crisis_code"
+            ]
+        }
+    },
+    {
+        "name": "processed_data",
+        "long_name": "UNOSAT Flood Portal Processed / Clean Data",
+        "pii_columns": [],
+        "database": {
+           "table_name": "processed_data",
+           "fields": [
+                "title",
+                "id",
+                "updated",
+                "summary",
+                "created",
+                "country",
+                "link_href",
+                "link_type",
+                "hdx_dataset_id",
+                "crisis_code"
+            ]
+        }
+    }]
+}

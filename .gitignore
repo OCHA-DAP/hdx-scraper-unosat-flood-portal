@@ -1,6 +1,9 @@
 venv/*
 venv/**
 
+data/*
+data/**
+
 scripts/R/*
 scripts/R/**
 

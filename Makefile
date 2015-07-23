@@ -12,3 +12,6 @@ run:
 
 runsw:
 	bash bin/run.sh;
+
+register:
+	bash bin/register.sh;

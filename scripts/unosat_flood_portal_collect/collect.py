@@ -8,15 +8,15 @@ import requests
 dir = os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
 sys.path.append(dir)
 
-
 import clean as Clean
 import config.load as Config
+from slugify import slugify
 from utilities.db import CleanTable
 from utilities.db import StoreRecords
 from utilities.prompt_format import item
 
 
-def FetchData(url=Config.LoadConfig()[0]['url']):
+def FetchData(url=Config.LoadConfig()['url']):
   '''Fetching data from the UNOSAT API.'''
 
   #
@@ -67,7 +67,10 @@ def DownloadAndProcessData():
         'created': None,
         'country': None,
         'link_href': link['href'],
-        'link_type': link['type']
+        'link_type': link['type'],
+        'hdx_dataset_id': slugify(record['title']),
+        'crisis_code': record['title'][0:14],  # firts 14 characters of every title.
+        'bbox': ','.join([ str(r * 111000) for r in record['bbox'] ])  # bounding boxes are wrong. this is a hack.
       }
       record_array.append(processed_record)
 
@@ -101,10 +104,13 @@ def Main(patch=True, write_json=False):
   '''Wrapper.'''
   try:
     d = DownloadAndProcessData()
-
+    
+    #
+    # For testing purposes.
+    #
     if write_json:
       import json
-      with open('data/test.json', 'w') as outfile:
+      with open(os.path.join('data', 'test.json'), 'w') as outfile:
           json.dump(d, outfile)
 
     StoreData(data=d, table_name='unprocessed_data')
@@ -114,10 +120,29 @@ def Main(patch=True, write_json=False):
     #
     if patch:
       try:
+
+        #
+        # Adding dates and country codes.
+        #
         dates_data = Clean.CleanDates(data=d)
         country_data = Clean.IdentifyCountries(data=dates_data)
-        StoreData(data=country_data, table_name='processed_data')
-        print '%s Successfully patched %s records.' % (item('prompt_success'), len(country_data))
+        file_type_data = Clean.IdentifyFileTypeAndFileName(data=country_data)
+
+        #
+        # Variable for export.
+        #
+        export_data = file_type_data
+        
+        #
+        # Cleaning title and adding tags.
+        #
+        data_title = Clean.CleanTitle(data=export_data)
+
+        #
+        # Storing results.
+        #
+        StoreData(data=data_title, table_name='processed_data')
+        print '%s Successfully patched %s records.' % (item('prompt_success'), len(export_data))
 
       except Exception as e:
         print '%s Failed to patch data.' % item('prompt_error')
