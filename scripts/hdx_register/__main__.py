@@ -73,7 +73,7 @@ if __name__ == '__main__':
   try:
     Main()
     scraperwiki.status('ok')
-    print '%s ScrapeWiki Status: Datasets registered successfully.' % item('prompt_succes')
+    print '%s ScrapeWiki Status: Datasets registered successfully.' % item('prompt_success')
 
 
   except Exception as e:
