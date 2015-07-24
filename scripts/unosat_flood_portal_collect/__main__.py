@@ -9,6 +9,7 @@ dir = os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
 sys.path.append(dir)
 
 import config.load as Config
+from utilities.prompt_format import item
 from unosat_flood_portal_collect import collect
 from unosat_flood_portal_collect import export
 
@@ -28,7 +29,7 @@ if __name__ == '__main__':
   except IndexError:
     config_path = Config.PROD_CONFIG_PATH
   
-  
+
   #
   # Collect and export data.
   #
