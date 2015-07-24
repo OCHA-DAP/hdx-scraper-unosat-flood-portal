@@ -28,8 +28,19 @@ if __name__ == '__main__':
   except IndexError:
     config_path = Config.PROD_CONFIG_PATH
   
+  
   #
   # Collect and export data.
   #
-  collect.Main(patch=True)
-  export.Main()
+  try:
+    collect.Main(patch=True)
+    export.Main()
+    scraperwiki.status('ok')
+    print '%s ScrapeWiki Status: Collected data successfully.' % item('prompt_succes')
+
+
+  except Exception as e:
+    print e
+    scraperwiki.status('error', 'Error collecting data.')
+    os.system("mail -s 'UNOSAT Flood Portal: Failed to collect data.' luiscape@gmail.com")
+
