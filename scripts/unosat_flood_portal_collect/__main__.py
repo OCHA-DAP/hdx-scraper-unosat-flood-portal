@@ -37,7 +37,7 @@ if __name__ == '__main__':
     collect.Main(patch=True)
     export.Main()
     scraperwiki.status('ok')
-    print '%s ScrapeWiki Status: Collected data successfully.' % item('prompt_succes')
+    print '%s ScrapeWiki Status: Collected data successfully.' % item('prompt_success')
 
 
   except Exception as e:
