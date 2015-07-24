@@ -4,6 +4,7 @@
 import os
 import sys
 import requests
+import scraperwiki
 import yajl as json
 import progressbar as pb
 
