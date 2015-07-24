@@ -66,4 +66,18 @@ def Main():
 
 
 if __name__ == '__main__':
-  Main()
+  
+  #
+  # Register datasets.
+  #
+  try:
+    Main()
+    scraperwiki.status('ok')
+    print '%s ScrapeWiki Status: Datasets registered successfully.' % item('prompt_succes')
+
+
+  except Exception as e:
+    print e
+    scraperwiki.status('error', 'Error collecting data.')
+    os.system("mail -s 'UNOSAT Flood Portal: Failed to register datasets on HDX.' luiscape@gmail.com")
+
