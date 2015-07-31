@@ -11,3 +11,5 @@ scripts/R/**
 *.sqlite
 *.sqlite-journal
 config/secrets.json
+
+.coeverage
