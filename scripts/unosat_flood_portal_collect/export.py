@@ -235,8 +235,7 @@ def ExportGalleryItems(directory=None, verbose=True):
       else:
         try:
           check = r.json()['error']['code']
-          t['image_url'] = None
-          t['url'] = None
+          continue  # will not add gallery items without URL
 
         except Exception as e:
           t['image_url'] = r.json()['href']

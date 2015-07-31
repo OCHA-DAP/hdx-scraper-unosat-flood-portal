@@ -3,7 +3,7 @@
   "hdx_key": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
   "json_folder": "data",
   "verbose": false,
-  "delete_resources": true,
+  "delete_resources": false,
   "delete_datasets": true,
   "url": "http://floods.unosat.org/geoportal/rest/find/document?rid=local&rids=local&start=1&max=10000&orderBy=relevance&dojo.preventCache=1436368315391&f=json",
   "database":
@@ -23,7 +23,8 @@
                 "link_href",
                 "link_type",
                 "hdx_dataset_id",
-                "crisis_code"
+                "crisis_code",
+                "bbox"
             ]
         }
     },
@@ -43,7 +44,10 @@
                 "link_href",
                 "link_type",
                 "hdx_dataset_id",
-                "crisis_code"
+                "crisis_code",
+                "file_extension",
+                "file_name",
+                "bbox"
             ]
         }
     }]
