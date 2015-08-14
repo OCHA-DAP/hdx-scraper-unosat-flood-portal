@@ -1,0 +1,27 @@
+{
+  "hdx_site": "https://blah/",
+  "hdx_key": "xxx",
+  "json_folder": "data",
+  "verbose": false,
+  "delete_resources": true,
+  "delete_datasets": false,
+  "database":
+    [{
+        "name": "test_fail_table",
+        "pii_columns": [],
+        "database": {
+           "table_name": "\n\n",
+           "fields": [
+                "title",
+                "id,,,",
+                "SELECT",
+                "CREATE",
+                "created",
+                "country",
+                "link_href",
+                "link_type***",
+                "\n\n\n"
+            ]
+        }
+    }]
+}
