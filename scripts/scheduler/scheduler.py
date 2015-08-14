@@ -18,13 +18,7 @@ def Wrapper(patch=False):
   #
   # Collect data.
   #
-  Collect.Main()
-
-  #
-  # Patch.
-  #
-  if patch:
-    Patch.Main()
+  Collect.Main(patch=True)
 
 
 #

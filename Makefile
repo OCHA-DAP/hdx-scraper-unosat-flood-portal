@@ -15,3 +15,6 @@ runsw:
 
 register:
 	bash bin/register.sh;
+
+scheduler:
+	bash bin/scheduler.sh;
