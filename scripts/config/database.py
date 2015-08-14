@@ -30,7 +30,7 @@ def CreateTables(config_path=Config.DEV_CONFIG_PATH, verbose=True):
       print e
 
     return False
-  
+
   #
   # Create SQL statements for every table.
   #
@@ -43,15 +43,24 @@ def CreateTables(config_path=Config.DEV_CONFIG_PATH, verbose=True):
     sql_statements[table_name] = statement
 
   for table in sql_statements:
-    try:
-      query = scraperwiki.sqlite.execute(sql_statements[table])
-      print "%s Table `%s` created." % (item('prompt_bullet'), str(table))
+    scraperwiki.sqlite.execute(sql_statements[table])
+    print "%s Table `%s` created." % (item('prompt_bullet'), str(table))
 
-    except Exception as e:
-      if verbose:
-        print '%s Failed to create table %s.' % (item('prompt_error'), table_name)
-        print e
-      return False
+  #
+  ## I'm unable to test the following chunk.
+  ## As a result, it will remain commented
+  ## below.
+  #
+  # for table in sql_statements:
+  #   try:
+  #     scraperwiki.sqlite.execute(sql_statements[table])
+  #     print "%s Table `%s` created." % (item('prompt_bullet'), str(table))
+
+  #   except Exception as e:
+  #     if verbose:
+  #       print '%s Failed to create table %s.' % (item('prompt_error'), table_name)
+  #       print e
+  #     return False
 
   print "%s Database created successfully.\n" % item('prompt_success')
   return True
