@@ -51,3 +51,12 @@ class CheckDatabaseCreation(unittest.TestCase):
   ## Failed config file.
   def test_database_fail(self):
     assert DB.CreateTables(config_path=os.path.join(dir, 'tests', 'data', 'test_database_fail.json')) == False
+
+  def test_that_odd_table_names_fail(self):
+    assert DB.CreateTables(config_path=os.path.join(dir, 'tests', 'data', 'test_fail_column_names.json')) == False
+
+
+
+
+
+
