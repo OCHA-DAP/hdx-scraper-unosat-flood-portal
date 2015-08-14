@@ -33,9 +33,14 @@ def Main(verbose=True):
   if verbose:
     print '%s Running scheduler.' % item('prompt_bullet')
 
-  while True:
-    schedule.run_pending()
-    time.sleep(1)
+  try:
+    while True:
+      schedule.run_pending()
+      time.sleep(1)
+
+  except Exception as e:
+    print e
+    return False
 
 
 if __name__ == '__main__':
