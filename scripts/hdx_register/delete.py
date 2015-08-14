@@ -41,7 +41,7 @@ def DeleteAllDatasetsFromOrg(organization, hdx_site, apikey, verbose=True):
   dataset_dict = requests.get(organization_show_url + organization, headers=headers, auth=('dataproject', 'humdata')).json()
 
 
-   
+
   #
   # Progress bar.
   #
@@ -55,20 +55,19 @@ def DeleteAllDatasetsFromOrg(organization, hdx_site, apikey, verbose=True):
   # Iterating over every dataset.
   #
   if dataset_dict["success"] is True:
-    
-    if verbose is False:
-      pbar.update(i)
+
+    pbar.update(i)
 
     for dataset in dataset_dict["result"]["packages"]:
-      
+
       u = { 'id': dataset["id"] }
       r = requests.post(package_delete_url, data=json.dumps(u), headers=headers, auth=('dataproject', 'humdata'))
 
       if r.status_code != 200:
-        print "%s %s" % (I('prompt_error'), dataset["name"])
+        print "%s : %s" % (I('prompt_error'), dataset["name"])
 
       else:
-        print "%s %s" % (I('prompt_success'), dataset["name"])
+        print "%s : %s" % (I('prompt_success'), dataset["name"])
 
     i += 1
 
@@ -105,7 +104,7 @@ def DeleteResources(dataset_dict, hdx_site, apikey, verbose=True):
   package_show_url = hdx_site + '/api/action/package_show?id='
   resource_delete_url = hdx_site + '/api/action/resource_delete'
   headers = { 'X-CKAN-API-Key': apikey, 'content-type': 'application/json' }
-  
+
   #
   # Progress bar.
   #
@@ -119,7 +118,7 @@ def DeleteResources(dataset_dict, hdx_site, apikey, verbose=True):
   # Iterating over every dataset.
   #
   for dataset in dataset_dict:
-    if verbose is False: 
+    if verbose is False:
       pbar.update(i)
 
     #
@@ -135,11 +134,11 @@ def DeleteResources(dataset_dict, hdx_site, apikey, verbose=True):
         if verbose:
          print json.dumps(d['error'])
 
-    
+
     if d["success"] is True:
       for resource in d["result"]["resources"]:
         if verbose:
-          print "%s resource deleted %s" % (I('prompt_warn'), resource["id"])
+          print "%s : resource deleted %s" % (I('prompt_warn'), resource["id"])
 
         #
         # Delete resource.
@@ -149,7 +148,7 @@ def DeleteResources(dataset_dict, hdx_site, apikey, verbose=True):
 
 
     i += 1
-  
+
   if verbose is False:
     pbar.finish()
   return True

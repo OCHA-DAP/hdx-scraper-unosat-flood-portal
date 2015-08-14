@@ -15,7 +15,7 @@ from utilities.prompt_format import item as I
 
 def LoadData(p, verbose=True):
   '''Loading data from a local JSON resource.'''
-  
+
   if verbose:
     print "--------------------------------------------------"
     print "%s Loading JSON data from %s." % (I('prompt_bullet'), p)
@@ -34,6 +34,6 @@ def LoadData(p, verbose=True):
 
 
   #
-  # Return data. 
+  # Return data.
   #
   return data
