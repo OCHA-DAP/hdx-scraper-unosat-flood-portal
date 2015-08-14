@@ -16,7 +16,7 @@ from utilities.prompt_format import item as I
 
 def CreateResources(resource_dict, hdx_site, apikey, verbose=True):
   '''Create datasets based on dictionaries.'''
-  
+
   if verbose:
     print "--------------------------------------------------"
     print "//////////////////////////////////////////////////"
@@ -48,7 +48,7 @@ def CreateResources(resource_dict, hdx_site, apikey, verbose=True):
 
 
   for resource in resource_dict:
-    if verbose is False: 
+    if verbose is False:
         pbar.update(i)
 
     if resource["format"] is None:
@@ -75,14 +75,14 @@ def CreateResources(resource_dict, hdx_site, apikey, verbose=True):
 
   if verbose is False:
     pbar.finish()
-    
+
   print "--------------------------------------------------"
   return True
 
 
 def CreateGalleryItems(gallery_dict, hdx_site, apikey, verbose=True):
   '''Create datasets based on dictionaries.'''
-  
+
   if verbose:
     print "--------------------------------------------------"
     print "//////////////////////////////////////////////////"
@@ -120,7 +120,7 @@ def CreateGalleryItems(gallery_dict, hdx_site, apikey, verbose=True):
   #
   for item in gallery_dict:
 
-    if verbose is False: 
+    if verbose is False:
         pbar.update(i)
 
     dataset = requests.get(package_show_url + item["dataset_id"], headers=headers, auth=('dataproject', 'humdata')).json()
@@ -187,7 +187,7 @@ def CreateDatasets(dataset_dict, hdx_site, apikey, verbose=True):
   package_create_url = hdx_site + '/api/action/package_create'
   package_update_url = hdx_site + '/api/action/package_update'
   headers = { 'X-CKAN-API-Key': apikey, 'content-type': 'application/json' }
-  
+
 
   #
   # Progress bar.
@@ -202,7 +202,7 @@ def CreateDatasets(dataset_dict, hdx_site, apikey, verbose=True):
   # Iterating over every dataset.
   #
   for dataset in dataset_dict:
-    if verbose is False: 
+    if verbose is False:
       pbar.update(i)
 
     check = requests.get(package_show_url + dataset["name"], headers=headers, auth=('dataproject', 'humdata')).json()
@@ -228,7 +228,7 @@ def CreateDatasets(dataset_dict, hdx_site, apikey, verbose=True):
         print "%s created successfully %s" % (I('prompt_success'), dataset["name"])
 
     i += 1
-  
+
   if verbose is False:
     pbar.finish()
 
