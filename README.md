@@ -3,8 +3,18 @@ Scraper designed to fetch datasets from [UNOSAT's Flood Portal](http://floods.un
 
 [![Build Status](https://travis-ci.org/luiscape/hdxscraper-unosat-flood-portal.svg)](https://travis-ci.org/luiscape/hdxscraper-unosat-flood-portal) [![Coverage Status](https://coveralls.io/repos/luiscape/hdxscraper-unosat-flood-portal/badge.svg?branch=master&service=github)](https://coveralls.io/github/luiscape/hdxscraper-unosat-flood-portal?branch=master)
 
+## Setup, Test, and Run
+Clone this repository, navigate to the repository's directory, and run:
+
+```shell
+$ make setup && make test
+$ make run
+```
+
+Make sure you edit the config files in the [`config/`](config/) folder if you are interested in having the scripts interact with HDX instances.
+
 ## Makefile Structure
-We are using `Makefiles` to run a series of pre-determined shell scripts. Here is an example of how that `Makefile` should be structured:
+This collector makes use of a `Makefile` to run a series of pre-determined shell scripts. The structure of the `Makefile` is presented as follows. Simply run `make` alongside one of the instructions (e.g. `make setup`).
 
 ```Makefile
 test:
@@ -18,10 +28,4 @@ setupsw:
 
 run:
     bash bin/run.sh;
-```
-
-The commands are defined as references to shell scripts. Running those commands could be done directly by invoking a call from the terminal:
-
-```terminal
-$ make setup
 ```
