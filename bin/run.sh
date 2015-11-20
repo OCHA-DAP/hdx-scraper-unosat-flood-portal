@@ -7,4 +7,4 @@
 # email notification.
 #
 source venv/bin/activate
-python scripts/unosat_flood_portal_collect/
+python scripts/unosat_flood_portal_collect/ 'dev'
