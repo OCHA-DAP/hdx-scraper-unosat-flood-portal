@@ -13,3 +13,4 @@ scripts/R/**
 config/secrets.json
 
 .coverage
+.DS_Store
