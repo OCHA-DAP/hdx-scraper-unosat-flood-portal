@@ -1,4 +1,7 @@
 ## UNOSAT Flood Portal Scraper
+
+ARCHIVED - no longer being run
+
 Scraper designed to fetch datasets from [UNOSAT's Flood Portal](http://floods.unosat.org/geoportal/catalog/main/home.page) and create equivalent datasets on HDX. The resulting datasets, results, and gallery items are created automatically on the [Humanitarian Data Exchange](https://data.hdx.rwlabs.org/organization/un-operational-satellite-appplications-programme-unosat)'s website.
 
 [![Build Status](https://travis-ci.org/OCHA-DAP/hdxscraper-unosat-flood-portal.svg)](https://travis-ci.org/OCHA-DAP/hdxscraper-unosat-flood-portal) [![Coverage Status](https://coveralls.io/repos/OCHA-DAP/hdxscraper-unosat-flood-portal/badge.svg?branch=master&service=github)](https://coveralls.io/github/OCHA-DAP/hdxscraper-unosat-flood-portal?branch=master)
